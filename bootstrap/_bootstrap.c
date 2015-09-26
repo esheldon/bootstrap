@@ -30,18 +30,18 @@
 
 // from http://stackoverflow.com/questions/20175148/64bit-random-number-between-a-range
 
-uint64_t urand64_full(void) {
+static uint64_t urand64_full(void) {
     uint64_t hi = lrand48();
     uint64_t md = lrand48();
     uint64_t lo = lrand48();
     return (hi << 42) + (md << 21) + lo;
 }
 
-int is_power_of_2(uint64_t x) {
+staic int is_power_of_2(uint64_t x) {
     return x == (x & -x);
 }
 
-uint64_t urand64(uint64_t low, uint64_t high) {
+static uint64_t urand64(uint64_t low, uint64_t high) {
   static const uint64_t M = ~(uint64_t)0; 
   uint64_t range = high - low;
   uint64_t to_exclude = is_power_of_2(range) ? 0
@@ -55,6 +55,11 @@ uint64_t urand64(uint64_t low, uint64_t high) {
   return low + res % range;
 }
 
+/*
+
+   Correct input types must be guaranteed at the python level
+
+*/
 static PyObject *
 PyBootstrap_bootstrap(PyObject* self, PyObject* args) {
 
