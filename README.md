@@ -10,6 +10,7 @@ mean = array(  [2.5, -5.6] )
 cov  = array([ [1.5,  0.2],
                [0.4,  2.7] ])
 
+# create correlated data using cholesky sampling
 np = 10000
 rdata = cholesky_sample(mean,cov, np)
 
