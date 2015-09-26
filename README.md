@@ -28,7 +28,7 @@ print(res)
 #            'cov': covariance over the sample
 #            'err': sqrt of the diagonal of the covariance matrix
 #            'seed': the used seed
-#            'nboot': number of bootstrap realziations
+#            'nboot': number of bootstrap realizations
  
 You can also use an object
 

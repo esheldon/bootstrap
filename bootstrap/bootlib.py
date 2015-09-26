@@ -25,7 +25,7 @@ def bootstrap(data, nboot, seed=None):
             'cov': covariance over the sample
             'err': sqrt of the diagonal of the covariance matrix
             'seed': the used seed
-            'nboot': number of bootstrap realziations
+            'nboot': number of bootstrap realizations
     """
     b=Bootstrap(data, seed=seed)
     b.go(nboot)
@@ -57,7 +57,7 @@ class Bootstrap(object):
             'cov': covariance over the sample
             'err': sqrt of the diagonal of the covariance matrix
             'seed': the used seed
-            'nboot': number of bootstrap realziations
+            'nboot': number of bootstrap realizations
         """
         if not hasattr(self,'_result'):
             raise RuntimeError("run go() first")
