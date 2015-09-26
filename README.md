@@ -4,12 +4,13 @@ python code to do bootstraps, wrapping fast C code
 Working in C we can avoid large memory allocations for the bootstrap subsets
 
 ```python
-np = 10000
+from bootstrap import bootstrap, Bootstrap
 
 mean = array(  [2.5, -5.6] )
 cov  = array([ [1.5,  0.2],
                [0.4,  2.7] ])
 
+np = 10000
 rdata = cholesky_sample(mean,cov, np)
 
 nboot=1000
@@ -20,7 +21,7 @@ print('expected mean:',mean)
 print('expected cov: ')
 print(ecov/np)
 
-res=bootstrap.bootstrap(rdata, nboot, seed=seed)
+res=bootstrap(rdata, nboot, seed=seed)
 
 print('boot mean:',res['mean'])
 print('boot cov:')
@@ -37,7 +38,7 @@ print(res['cov'])
  
 # You can also use an object
 
-b=bootstrap.Bootstrap(data, seed=seed)
+b=Bootstrap(data, seed=seed)
 b.go(nboot)
 res = b.get_result()
 
