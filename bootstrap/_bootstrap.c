@@ -37,7 +37,7 @@ static uint64_t urand64_full(void) {
     return (hi << 42) + (md << 21) + lo;
 }
 
-staic int is_power_of_2(uint64_t x) {
+static int is_power_of_2(uint64_t x) {
     return x == (x & -x);
 }
 
