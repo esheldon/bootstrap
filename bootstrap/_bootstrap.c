@@ -101,9 +101,7 @@ PyBootstrap_bootstrap(PyObject* self, PyObject* args) {
         ptr = PyArray_GETPTR1(mean, idim1);
         (*ptr) *= (1.0/npoints);
 
-        printf("%lf ", (*ptr));
     }
-    printf("\n");
 
     // assume sptr is contiguous for simplicity
     sptr = PyArray_DATA(scratch);
@@ -116,7 +114,6 @@ PyBootstrap_bootstrap(PyObject* self, PyObject* args) {
         for (ipt=0; ipt<npoints; ipt++) {
 
             uint64_t irand = urand64(0, (uint64_t) npoints);
-            //printf("irand: %lu\n", irand);
 
             for (idim1=0; idim1<ndim; idim1++) {
 
