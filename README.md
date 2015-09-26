@@ -4,25 +4,28 @@ python code to do bootstraps, wrapping fast C code
 Working in C we can avoid large memory allocations for the bootstrap subsets
 
 ```python
-import bootstrap
-import numpy
-from numpy import sqrt
-
 np = 10000
-data = numpy.zeros( (np, 2) )
-data[:,0] = numpy.random.normal(loc=2.5, scale=1.0, size=np)
-data[:,1] = numpy.random.normal(loc=-5.7, scale=0.2, size=np)
 
-nboot=100
+mean = array([2.5, -5.6])
+cov = array([[1.5,0.2],
+             [0.4,2.7]])
+
+rdata = cholesky_sample(mean,cov, np)
+
+nboot=1000
 seed=3847
 
-print('expected ')
-print(data.mean(axis=0))
-print(data.std(axis=0)/sqrt(np))
+ecov = numpy.cov(rdata.T)
+print('expected mean:',mean)
+print('expected cov: ')
+print(ecov/np)
 
-res=bootstrap.bootstrap(data, nboot, seed=seed)
+res=bootstrap.bootstrap(rdata, nboot, seed=seed)
 
-print(res)
+print('boot mean:',res['mean'])
+print('boot cov:')
+print(res['cov'])
+
 
 # the result is a dict with the following entries
 #    A dictionary with entries
