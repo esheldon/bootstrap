@@ -5,22 +5,73 @@ from . import _bootstrap
 from copy import deepcopy
 
 def bootstrap(data, nboot, seed=None):
+    """
+    bootstrap the input data
+
+    parameters
+    ----------
+    data: array
+        [Npoints, Ndim] array or [Npoints] array
+    nboot: integer
+        Number of bootstrap realizations
+
+    seed: integer, optional
+        optional seed
+
+    returns
+    -------
+    A dictionary with entries
+            'mean': mean over the sample
+            'cov': covariance over the sample
+            'err': sqrt of the diagonal of the covariance matrix
+            'seed': the used seed
+            'nboot': number of bootstrap realziations
+    """
     b=Bootstrap(data, seed=seed)
     b.go(nboot)
 
     return b.get_result()
 
 class Bootstrap(object):
+    """
+    bootstrap the input data
+
+    parameters
+    ----------
+    data: array
+        [Npoints, Ndim] array or [Npoints] array
+
+    seed: integer, optional
+        optional seed
+    """
     def __init__(self, data, seed=None):
         self.set_data(data)
         self.set_seed(seed=seed)
 
     def get_result(self):
+        """
+        get the result dict
+
+        The result is a dict with parameters 
+            'mean': mean over the sample
+            'cov': covariance over the sample
+            'err': sqrt of the diagonal of the covariance matrix
+            'seed': the used seed
+            'nboot': number of bootstrap realziations
+        """
         if not hasattr(self,'_result'):
             raise RuntimeError("run go() first")
         return deepcopy(self._result)
 
     def go(self, nboot):
+        """
+        run the bootstrapping
+
+        parameters
+        ----------
+        nboot: integer
+            Number of bootstrap realizations
+        """
         mean = numpy.zeros(self.ndim)
         cov  = numpy.zeros( (self.ndim, self.ndim) )
 
