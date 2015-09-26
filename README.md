@@ -30,7 +30,7 @@ print(res)
 #            'seed': the used seed
 #            'nboot': number of bootstrap realizations
  
-You can also use an object
+# You can also use an object
 
 b=bootstrap.Bootstrap(data, seed=seed)
 b.go(nboot)
