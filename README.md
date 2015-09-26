@@ -1,6 +1,8 @@
 # bootstrap
 python code to do bootstraps, wrapping fast C code
 
+Working in C we can avoid large memory allocations for the bootstrap subsets
+
 ```python
 import bootstrap
 import numpy
