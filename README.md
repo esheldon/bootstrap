@@ -14,14 +14,13 @@ np = 10000
 rdata = cholesky_sample(mean,cov, np)
 
 nboot=1000
-seed=3847
 
 ecov = numpy.cov(rdata.T)
 print('expected mean:',mean)
 print('expected cov: ')
 print(ecov/np)
 
-res=bootstrap(rdata, nboot, seed=seed)
+res=bootstrap(rdata, nboot)
 
 print('boot mean:',res['mean'])
 print('boot cov:')
@@ -38,7 +37,7 @@ print(res['cov'])
  
 # You can also use an object
 
-b=Bootstrap(data, seed=seed)
+b=Bootstrap(data)
 b.go(nboot)
 res = b.get_result()
 
